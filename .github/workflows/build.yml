@@ -33,7 +33,6 @@ jobs:
           fi
 
           echo "Using $RELEASE_NAME as release name."
-          echo "::set-output name=name::$RELEASE_NAME"
           echo "name=$RELEASE_NAME" >> $GITHUB_OUTPUT
       # build Go binaries
       - name: Set up Go
