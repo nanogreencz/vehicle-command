@@ -105,5 +105,12 @@ func main() {
 	// method of your implementation can perform your business logic and then, if the request is
 	// authorized, invoke p.ServeHTTP. Finally, replace p in the below ListenAndServeTLS call with
 	// an object of your newly created type.
-	log.Error("Server stopped: %s", http.ListenAndServeTLS(addr, certFilename, keyFilename, p))
+	if certFilename != "" && keyFilename != "" {
+		log.Info("Server started with TLS")
+		log.Error("Server stopped: %s", http.ListenAndServeTLS(addr, certFilename, keyFilename, p))
+		return
+	}
+
+	log.Info("Server started without TLS")
+	log.Error("Server stopped: %s", http.ListenAndServe(addr, p))
 }
